@@ -1,0 +1,38 @@
+@model IEnumerable<project1.Data.datamodel.model2>
+
+<h1 class="text-center"><i class="fas fa-comments-dollar text-success"></i> Example List</h1>
+
+
+<table class="table">
+    <thead class="thead-light">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Sentence</th>
+            <th scope="col">InMyanmar</th>
+            <th scope="col">InEnglish</th>
+            <th>
+                <a onclick="showInPopup('@Url.Action("AddOrEdit","Test2",null,Context.Request.Scheme)','New Example Sentence')" class="btn btn-success text-white">New Example Sentence</a>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var m in Model)
+        {
+            <tr>
+                <td>@m.ExampleKey</td>
+                <td>@m.Sentence</td>
+                <td>@m.InMyanmar</td>
+                <td>@m.InEnglish</td>
+                <td>
+                    <div>
+                        <a onclick="showInPopup('@Url.Action("AddOrEdit","Test2",new {id=m.ExampleKey},Context.Request.Scheme)','Update Example')" class="btn btn-info text-white"><i class="fas fa-pencil-alt"></i> Edit</a>
+                        <form asp-action="Delete" asp-controller="N5VocabExamples" asp-route-id="@m.ExampleKey" onsubmit="return jQueryAjaxDelete(this)" class="d-inline">
+                            <input type="submit" value="Delete" class="btn btn-danger" />
+                        </form>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

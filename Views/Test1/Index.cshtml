@@ -1,0 +1,74 @@
+@model IEnumerable<project1.Data.datamodel.model1>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/menu/Layout.cshtml";
+}
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table" id="tbl">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Vocab)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Hiragana)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Romaji)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OrderId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WordGroup)
+            </th>
+            <th>
+                Meaning
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Vocab)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Hiragana)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Romaji)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OrderId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.WordGroup)<br />
+                    @Html.DisplayFor(modelItem => item.GroupDetail)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InEnglish)<br />
+                    @Html.DisplayFor(modelItem => item.InMyanmar)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Key">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Key">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Key">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
